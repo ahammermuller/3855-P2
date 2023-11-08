@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filesystem-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filesystem
+  template:
+    metadata:
+      labels:
+        app: filesystem
+    spec:
+      containers:
+      - name: filesystem
+        image: avisoboleva/assig2:filesys
+        ports:
+        - containerPort: 5001
