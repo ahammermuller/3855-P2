@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: authentication
+        io.kompose.network/appnetwork: "true"  # Add the network label
     spec:
       containers:
       - name: authentication

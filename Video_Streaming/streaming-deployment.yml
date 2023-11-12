@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: streaming
+        io.kompose.network/appnetwork: "true"  # Add the network label
     spec:
       containers:
       - name: streaming
