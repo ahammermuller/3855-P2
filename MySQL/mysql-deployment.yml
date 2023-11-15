@@ -22,7 +22,7 @@ spec:
       - name: mysql
         image: avisoboleva/assig2:mysql
         volumeMounts:
-          - mountPath: "/var/log/nginx"
+          - mountPath: "/docker-entrypoint-initdb.d/init.sql"
             name: a02_pv         
         ports:
         - containerPort: 3306
