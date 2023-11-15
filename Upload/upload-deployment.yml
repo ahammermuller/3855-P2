@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,21 +8,34 @@ spec:
   selector:
     matchLabels:
       app: upload
-  # volumes:
-  # - name: a02_pv
-  #   persistentVolumeClaim:
-  #     claimName: a02_pvc         
   template:
     metadata:
       labels:
         app: upload
-        io.kompose.network/appnetwork: "true"  # Add the network label 
+        io.kompose.network/appnetwork: "true"
     spec:
       containers:
       - name: upload
         image: avisoboleva/assig2:upload
-        # volumeMounts:
-        #   - mountPath: "/app/video"
-        #     name: a02_pv         
         ports:
         - containerPort: 5002
+        volumeMounts:
+        - name: a02-pv-volume
+          mountPath: /app/videos
+      volumes:
+      - name: a02-pv-volume
+        persistentVolumeClaim:
+          claimName: a02-pvc
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: a02-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /app/videos
