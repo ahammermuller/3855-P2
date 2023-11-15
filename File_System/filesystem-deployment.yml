@@ -27,3 +27,23 @@ spec:
         #     name: a02_pv         
         ports:
         - containerPort: 5001
+        volumeMounts:
+        - name: a02-pv2-volume2
+          mountPath: /app/uploads
+      volumes:
+      - name: a02-pv2-volume2
+        persistentVolumeClaim:
+          claimName: a02-pvc2
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: a02-pv
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteMany
+#   hostPath:
+#     path: /app

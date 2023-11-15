@@ -27,15 +27,15 @@ spec:
         persistentVolumeClaim:
           claimName: a02-pvc
 
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: a02-pv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /app/videos
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: a02-pv
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteMany
+#   hostPath:
+#     path: /app
