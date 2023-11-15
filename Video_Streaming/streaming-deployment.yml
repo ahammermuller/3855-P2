@@ -8,6 +8,10 @@ spec:
   selector:
     matchLabels:
       app: streaming
+  volumes:
+  - name: a02_pv
+    persistentVolumeClaim:
+      claimName: a02_pvc         
   template:
     metadata:
       labels:
@@ -17,5 +21,8 @@ spec:
       containers:
       - name: streaming
         image: avisoboleva/assig2:videostream
+        volumeMounts:
+          - mountPath: "/var/log/nginx"
+            name: a02_pv         
         ports:
         - containerPort: 5003

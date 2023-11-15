@@ -8,6 +8,10 @@ spec:
   selector:
     matchLabels:
       app: filesystem
+  volumes:
+  - name: a02_pv
+    persistentVolumeClaim:
+      claimName: a02_pvc            
   template:
     metadata:
       labels:
@@ -17,5 +21,8 @@ spec:
       containers:
       - name: filesystem
         image: avisoboleva/assig2:filesys
+        volumeMounts:
+          - mountPath: "/var/log/nginx"
+            name: a02_pv         
         ports:
         - containerPort: 5001
