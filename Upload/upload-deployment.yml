@@ -20,22 +20,9 @@ spec:
         ports:
         - containerPort: 5002
         volumeMounts:
-        - name: a02-pv-volume
+        - name: pv-upload-volume
           mountPath: /app/videos
       volumes:
-      - name: a02-pv-volume
+      - name: pv-upload-volume
         persistentVolumeClaim:
-          claimName: a02-pvc
-
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: a02-pv
-# spec:
-#   capacity:
-#     storage: 5Gi
-#   accessModes:
-#     - ReadWriteMany
-#   hostPath:
-#     path: /app
+          claimName: pvc-upload

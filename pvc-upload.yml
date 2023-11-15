@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: a02-pvc2 
+  name: pvc-upload
   namespace: a02-ns
 spec:
   accessModes:

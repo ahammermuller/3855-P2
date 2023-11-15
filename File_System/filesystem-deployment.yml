@@ -8,11 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: filesystem
-  # volumes:
-  # - name: a02_pv
-  #   persistentVolumeClaim:
-  #     claimName: a02_pvc            
+      app: filesystem         
   template:
     metadata:
       labels:
@@ -21,29 +17,13 @@ spec:
     spec:
       containers:
       - name: filesystem
-        image: avisoboleva/assig2:filesys
-        # volumeMounts:
-        #   - mountPath: "/app/uploads"
-        #     name: a02_pv         
+        image: avisoboleva/assig2:filesys        
         ports:
         - containerPort: 5001
         volumeMounts:
-        - name: a02-pv2-volume2
+        - name: pv-filesys-volume2
           mountPath: /app/uploads
       volumes:
-      - name: a02-pv2-volume2
+      - name: pv-filesys-volume2
         persistentVolumeClaim:
-          claimName: a02-pvc2
-
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: a02-pv
-# spec:
-#   capacity:
-#     storage: 5Gi
-#   accessModes:
-#     - ReadWriteMany
-#   hostPath:
-#     path: /app
+          claimName: pvc-filesys
