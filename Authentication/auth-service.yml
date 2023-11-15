@@ -2,7 +2,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: authentication-service
+  name: authentication
+  namespace: a02-ns
 spec:
   selector:
     app: authentication

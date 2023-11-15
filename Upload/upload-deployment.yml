@@ -3,15 +3,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: upload-web-deployment
+  namespace: a02-ns 
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: upload
-  volumes:
-  - name: a02_pv
-    persistentVolumeClaim:
-      claimName: a02_pvc         
+  # volumes:
+  # - name: a02_pv
+  #   persistentVolumeClaim:
+  #     claimName: a02_pvc         
   template:
     metadata:
       labels:
@@ -21,8 +22,8 @@ spec:
       containers:
       - name: upload
         image: avisoboleva/assig2:upload
-        volumeMounts:
-          - mountPath: "/app/video"
-            name: a02_pv         
+        # volumeMounts:
+        #   - mountPath: "/app/video"
+        #     name: a02_pv         
         ports:
         - containerPort: 5002

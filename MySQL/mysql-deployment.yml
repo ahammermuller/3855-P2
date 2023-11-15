@@ -3,15 +3,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-deployment
+  namespace: a02-ns 
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mysql
-  volumes:
-  - name: a02_pv
-    persistentVolumeClaim:
-      claimName: a02_pvc         
+  # volumes:
+  # - name: a02_pv
+  #   persistentVolumeClaim:
+  #     claimName: a02_pvc         
   template:
     metadata:
       labels:
@@ -21,9 +22,9 @@ spec:
       containers:
       - name: mysql
         image: avisoboleva/assig2:mysql
-        volumeMounts:
-          - mountPath: "/docker-entrypoint-initdb.d/init.sql"
-            name: a02_pv         
+        # volumeMounts:
+        #   - mountPath: "/docker-entrypoint-initdb.d/init.sql"
+        #     name: a02_pv         
         ports:
         - containerPort: 3306
         env:

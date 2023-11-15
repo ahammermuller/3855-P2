@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: streaming-deployment
+  namespace: a02-ns 
 spec:
   replicas: 1
   selector:
