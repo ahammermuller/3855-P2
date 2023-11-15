@@ -3,27 +3,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: filesystem-deployment
-  namespace: a02-ns
+  namespace: a02-ns 
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: filesystem
-  # volumes:
-  # - name: a02_pv
-  #   persistentVolumeClaim:
-  #     claimName: a02_pvc            
   template:
     metadata:
       labels:
         app: filesystem
-        io.kompose.network/appnetwork: "true"  # Add the network label
+        io.kompose.network/appnetwork: "true"
     spec:
       containers:
       - name: filesystem
         image: avisoboleva/assig2:filesys
-        # volumeMounts:
-        #   - mountPath: "/app/uploads"
-        #     name: a02_pv         
         ports:
-        - containerPort: 5001
+        - containerPort: 5002
+        volumeMounts:
+        - name: a02-filesystem
+          mountPath: /app/uploads
+      volumes:
+      - name: a02-filesystem
+        persistentVolumeClaim:
+          claimName: a02-pvc-filesystem      

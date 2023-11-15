@@ -9,22 +9,18 @@ spec:
   selector:
     matchLabels:
       app: mysql
-  # volumes:
-  # - name: a02_pv
-  #   persistentVolumeClaim:
-  #     claimName: a02_pvc         
   template:
     metadata:
       labels:
         app: mysql
-        io.kompose.network/appnetwork: "true"  # Add the network label
+        io.kompose.network/appnetwork: "true"
     spec:
       containers:
       - name: mysql
         image: avisoboleva/assig2:mysql
-        # volumeMounts:
-        #   - mountPath: "/docker-entrypoint-initdb.d/init.sql"
-        #     name: a02_pv         
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: a02-mysql
         ports:
         - containerPort: 3306
         env:
@@ -32,3 +28,8 @@ spec:
           value: root
         - name: MYSQL_DATABASE
           value: video_db
+      volumes:
+      - name: a02-mysql
+        persistentVolumeClaim:
+          claimName: a02-pvc-mysql
+
