@@ -18,11 +18,11 @@ spec:
       containers:
       - name: mysql
         image: avisoboleva/assig2:mysql
-        volumeMounts:
-        - mountPath: "/var/lib/mysql"
-          name: a02-mysql
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - name: a02-mysql
+          mountPath: "/var/lib/mysql"
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: root
