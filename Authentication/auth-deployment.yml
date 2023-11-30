@@ -17,7 +17,10 @@ spec:
     spec:
       containers:
       - name: authentication
-        image: avisoboleva/assig2:auth      
+        image: avisoboleva/assig2:auth     
+        resources:
+          requests:
+            cpu: 100m         
         ports:
         - containerPort: 5000
 
